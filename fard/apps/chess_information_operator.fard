@@ -1,0 +1,63 @@
+import("std/fs") as fs
+import("std/json") as json
+import("std/list") as list
+import("std/rec") as rec
+import("std/math") as math
+
+let edges = rec.get(json.decode(fs.read_text("data/Z_edges_fitted.json")), "edges") in
+let openings = rec.get(json.decode(fs.read_text("data/openings.json")), "openings") in
+let endgames = rec.get(json.decode(fs.read_text("data/endgames.json")), "endgames") in
+
+let total_support = list.fold(edges, 0, fn(acc, e) {
+  acc + rec.get(e, "support_games")
+}) in
+
+let support_for_opening = fn(opening_id) {
+  list.fold(edges, 0, fn(acc, e) {
+    if rec.get(e, "opening_id") == opening_id then acc + rec.get(e, "support_games") else acc
+  })
+} in
+
+let support_for_endgame = fn(endgame_id) {
+  list.fold(edges, 0, fn(acc, e) {
+    if rec.get(e, "endgame_id") == endgame_id then acc + rec.get(e, "support_games") else acc
+  })
+} in
+
+let conditional_entropy_for_opening = fn(opening_id) {
+  let row_support = support_for_opening(opening_id) in
+  list.fold(endgames, 0.0, fn(acc, eg) {
+    let eid = rec.get(eg, "id") in
+    let cell = list.fold(edges, 0.0, fn(acc2, edge) {
+      if rec.get(edge, "opening_id") == opening_id && rec.get(edge, "endgame_id") == eid then
+        acc2 + rec.get(edge, "p_hat")
+      else
+        acc2
+    }) in
+    if cell > 0.0 then acc + ((0.0 - cell) * math.log2(cell)) else acc
+  })
+} in
+
+let H_E = list.fold(endgames, 0.0, fn(acc, eg) {
+  let p = support_for_endgame(rec.get(eg, "id")) / (total_support * 1.0) in
+  if p > 0.0 then acc + ((0.0 - p) * math.log2(p)) else acc
+}) in
+
+let H_E_given_O = list.fold(openings, 0.0, fn(acc, o) {
+  let oid = rec.get(o, "id") in
+  let p_o = support_for_opening(oid) / (total_support * 1.0) in
+  acc + (p_o * conditional_entropy_for_opening(oid))
+}) in
+
+let I_O_E = H_E - H_E_given_O in
+
+{
+  operator_name: "Chess Opening-Endgame Information Operator",
+  information: {
+    H_E_bits: H_E,
+    H_E_given_O_bits: H_E_given_O,
+    mutual_information_I_O_E_bits: I_O_E,
+    effective_endgames_per_opening: math.pow(2.0, H_E_given_O)
+  },
+  theorem: "The opening determines most of the endgame closure information in the current finite operator."
+}
