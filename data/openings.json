@@ -1,0 +1,446 @@
+{
+  "schema": {
+    "id": "string",
+    "eco_codes": [
+      "string"
+    ],
+    "name": "string",
+    "side_to_move": "string",
+    "moves_san_prefixes": [
+      "string"
+    ],
+    "tags": [
+      "string"
+    ],
+    "notes": "string"
+  },
+  "openings": [
+    {
+      "id": "O_Alekhine",
+      "eco_codes": [
+        "B02",
+        "B03",
+        "B04",
+        "B05"
+      ],
+      "name": "Alekhine's Defence",
+      "side_to_move": "white",
+      "moves_san_prefixes": [
+        "1.e4 Nf6",
+        "1.e4 Nf6 2.e5 Nd5"
+      ],
+      "tags": [
+        "1.e4",
+        "hypermodern",
+        "provocative",
+        "counterattack"
+      ],
+      "notes": "Black invites an overextended white centre and strikes back with piece pressure."
+    },
+    {
+      "id": "O_Scandinavian",
+      "eco_codes": [
+        "B01"
+      ],
+      "name": "Scandinavian Defence",
+      "side_to_move": "white",
+      "moves_san_prefixes": [
+        "1.e4 d5",
+        "1.e4 d5 2.exd5 Qxd5"
+      ],
+      "tags": [
+        "1.e4",
+        "open",
+        "early_queen_development"
+      ],
+      "notes": "Black immediately challenges the e4 pawn and often develops the queen early."
+    },
+    {
+      "id": "O_Dutch",
+      "eco_codes": [
+        "A80",
+        "A81",
+        "A82",
+        "A83",
+        "A84",
+        "A85",
+        "A86",
+        "A87",
+        "A88",
+        "A89"
+      ],
+      "name": "Dutch Defence",
+      "side_to_move": "white",
+      "moves_san_prefixes": [
+        "1.d4 f5"
+      ],
+      "tags": [
+        "1.d4",
+        "asymmetric",
+        "kingside_attack",
+        "dark_squares"
+      ],
+      "notes": "Black grabs space on the kingside with ...f5, weakening dark squares but taking the initiative."
+    },
+    {
+      "id": "O_Philidor",
+      "eco_codes": [
+        "C41"
+      ],
+      "name": "Philidor Defence",
+      "side_to_move": "white",
+      "moves_san_prefixes": [
+        "1.e4 e5 2.Nf3 d6"
+      ],
+      "tags": [
+        "1.e4",
+        "solid",
+        "slightly_passive"
+      ],
+      "notes": "Black supports the e5 pawn with d6, leading to a compact but somewhat cramped position."
+    },
+    {
+      "id": "O_Nimzowitsch",
+      "eco_codes": [
+        "B00"
+      ],
+      "name": "Nimzowitsch Defence",
+      "side_to_move": "white",
+      "moves_san_prefixes": [
+        "1.e4 Nc6"
+      ],
+      "tags": [
+        "1.e4",
+        "unorthodox",
+        "flexible"
+      ],
+      "notes": "Black develops the queen's knight early, delaying the central pawn confrontation."
+    },
+    {
+      "id": "O_Grunfeld",
+      "eco_codes": [
+        "D85",
+        "D86",
+        "D87",
+        "D88",
+        "D89",
+        "D90",
+        "D91",
+        "D92",
+        "D93",
+        "D94",
+        "D95",
+        "D96",
+        "D97",
+        "D98",
+        "D99"
+      ],
+      "name": "Grünfeld Defense",
+      "side_to_move": "white",
+      "moves_san_prefixes": [
+        "1.d4 Nf6 2.c4 g6 3.Nc3 d5"
+      ],
+      "tags": [
+        "1.d4",
+        "hypermodern",
+        "dynamic",
+        "central_counter"
+      ],
+      "notes": "Black attacks the d4–c4 center with ...d5 and piece pressure; a key hypermodern response to 1.d4."
+    },
+    {
+      "id": "O_RuyClosed",
+      "eco_codes": [
+        "C84",
+        "C85",
+        "C86",
+        "C87",
+        "C88",
+        "C89",
+        "C90",
+        "C91",
+        "C92",
+        "C93",
+        "C94",
+        "C95",
+        "C96",
+        "C97",
+        "C98",
+        "C99"
+      ],
+      "name": "Ruy Lopez, Closed",
+      "side_to_move": "white",
+      "moves_san_prefixes": [
+        "1.e4 e5 2.Nf3 Nc6 3.Bb5 a6 4.Ba4 Nf6 5.O-O Be7"
+      ],
+      "tags": [
+        "1.e4",
+        "open_game",
+        "spanish",
+        "positional"
+      ],
+      "notes": "Classical Spanish structure with ...Be7 and ...O-O, leading to rich maneuvering middlegames."
+    },
+    {
+      "id": "O_SicilianMoscow",
+      "eco_codes": [
+        "B51",
+        "B52"
+      ],
+      "name": "Sicilian Defense, Moscow Variation",
+      "side_to_move": "white",
+      "moves_san_prefixes": [
+        "1.e4 c5 2.Nf3 d6 3.Bb5+"
+      ],
+      "tags": [
+        "1.e4",
+        "sicilian",
+        "anti_sicilian",
+        "check_on_b5"
+      ],
+      "notes": "White checks on b5 to steer play away from main Open Sicilian theory and force early structural decisions."
+    },
+    {
+      "id": "O_CaroKannAdvance",
+      "eco_codes": [
+        "B12"
+      ],
+      "name": "Caro-Kann Defense, Advance Variation",
+      "side_to_move": "white",
+      "moves_san_prefixes": [
+        "1.e4 c6 2.d4 d5 3.e5"
+      ],
+      "tags": [
+        "1.e4",
+        "semi_open",
+        "solid",
+        "space_gain"
+      ],
+      "notes": "White grabs space with e5; Black aims for a healthy structure and piece play against the pawn chain."
+    },
+    {
+      "id": "O_FrenchWinawer",
+      "eco_codes": [
+        "C18",
+        "C19"
+      ],
+      "name": "French Defense, Winawer",
+      "side_to_move": "white",
+      "moves_san_prefixes": [
+        "1.e4 e6 2.d4 d5 3.Nc3 Bb4"
+      ],
+      "tags": [
+        "1.e4",
+        "semi_open",
+        "french",
+        "imbalanced_structure"
+      ],
+      "notes": "Black pins the knight with ...Bb4, often creating long-term structural imbalances and sharp middlegames."
+    },
+    {
+      "id": "O_ClosedSicilian",
+      "eco_codes": [
+        "B23",
+        "B24"
+      ],
+      "name": "Closed Sicilian",
+      "side_to_move": "white",
+      "moves_san_prefixes": [
+        "1.e4 c5 2.Nc3"
+      ],
+      "tags": [
+        "1.e4",
+        "sicilian",
+        "closed",
+        "kingside_attack"
+      ],
+      "notes": "Closed Sicilian structures with slow kingside attack."
+    },
+    {
+      "id": "O_QGA",
+      "eco_codes": [
+        "D20",
+        "D21",
+        "D22",
+        "D23",
+        "D24"
+      ],
+      "name": "Queen's Gambit Accepted",
+      "side_to_move": "white",
+      "moves_san_prefixes": [
+        "1.d4 d5 2.c4 dxc4"
+      ],
+      "tags": [
+        "1.d4",
+        "queens_gambit",
+        "accepted",
+        "open_center"
+      ],
+      "notes": "Queen's Gambit Accepted with an early ...dxc4."
+    },
+    {
+      "id": "O_Petroff",
+      "eco_codes": [
+        "C42",
+        "C43"
+      ],
+      "name": "Petroff Defense",
+      "side_to_move": "white",
+      "moves_san_prefixes": [
+        "1.e4 e5 2.Nf3 Nxe4"
+      ],
+      "tags": [
+        "1.e4",
+        "e5",
+        "symmetry",
+        "solid"
+      ],
+      "notes": "Main Petroff line with 2...Nxe4."
+    },
+    {
+      "id": "O_d4e6",
+      "eco_codes": [
+        "A40",
+        "E12"
+      ],
+      "name": "1.d4 e6 systems",
+      "side_to_move": "white",
+      "moves_san_prefixes": [
+        "1.d4 e6"
+      ],
+      "tags": [
+        "1.d4",
+        "flexible",
+        "queens_indian_precursor"
+      ],
+      "notes": "Universal 1...e6 response to 1.d4 leading to QID/other systems."
+    },
+    {
+      "id": "O_SymEnglish",
+      "eco_codes": [
+        "A30",
+        "A31"
+      ],
+      "name": "Symmetrical English",
+      "side_to_move": "white",
+      "moves_san_prefixes": [
+        "1.c4 c5"
+      ],
+      "tags": [
+        "1.c4",
+        "english",
+        "symmetrical"
+      ],
+      "notes": "Symmetrical English structures."
+    },
+    {
+      "id": "O_SicilianNajdorf",
+      "eco_codes": [
+        "B90",
+        "B91",
+        "B92",
+        "B93",
+        "B94",
+        "B95",
+        "B96",
+        "B97",
+        "B98",
+        "B99"
+      ],
+      "name": "Sicilian Defense, Najdorf",
+      "side_to_move": "white",
+      "moves_san_prefixes": [
+        "1.e4 c5 2.Nf3 d6 3.d4 cxd4 4.Nxd4 Nf6 5.Nc3 a6"
+      ],
+      "tags": [
+        "1.e4",
+        "sicilian",
+        "najdorf",
+        "sharp"
+      ],
+      "notes": "Canonical Najdorf move order."
+    },
+    {
+      "id": "O_RuyBerlin",
+      "eco_codes": [
+        "C65",
+        "C66",
+        "C67"
+      ],
+      "name": "Ruy Lopez, Berlin Defense",
+      "side_to_move": "white",
+      "moves_san_prefixes": [
+        "1.e4 e5 2.Nf3 Nc6 3.Bb5 Nf6"
+      ],
+      "tags": [
+        "1.e4",
+        "ruy_lopez",
+        "berlin",
+        "endgame"
+      ],
+      "notes": "Berlin Defense leading to characteristic endgames."
+    },
+    {
+      "id": "O_QGDSlav",
+      "eco_codes": [
+        "D10",
+        "D11",
+        "D12",
+        "D13"
+      ],
+      "name": "Slav Defense (QGD Slav)",
+      "side_to_move": "white",
+      "moves_san_prefixes": [
+        "1.d4 d5 2.c4 c6"
+      ],
+      "tags": [
+        "1.d4",
+        "slav",
+        "solid"
+      ],
+      "notes": "Mainline Slav structure after 2...c6."
+    },
+    {
+      "id": "O_NimzoRubinstein",
+      "eco_codes": [
+        "E41",
+        "E42",
+        "E43"
+      ],
+      "name": "Nimzo-Indian, Rubinstein",
+      "side_to_move": "white",
+      "moves_san_prefixes": [
+        "1.d4 Nf6 2.c4 e6 3.Nc3 Bb4 4.e3"
+      ],
+      "tags": [
+        "1.d4",
+        "nimzo_indian",
+        "rubinstein"
+      ],
+      "notes": "Nimzo-Indian Rubinstein system with e3."
+    },
+    {
+      "id": "O_KIDClassical",
+      "eco_codes": [
+        "E90",
+        "E91",
+        "E92",
+        "E93",
+        "E94",
+        "E95"
+      ],
+      "name": "King's Indian Defense, Classical",
+      "side_to_move": "white",
+      "moves_san_prefixes": [
+        "1.d4 Nf6 2.c4 g6 3.Nc3 Bg7 4.e4 d6 5.Nf3 O-O 6.Be2 e5"
+      ],
+      "tags": [
+        "1.d4",
+        "kings_indian",
+        "classical",
+        "attacking"
+      ],
+      "notes": "Classical KID with Be2 and ...e5."
+    }
+  ]
+}

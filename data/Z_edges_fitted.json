@@ -1,0 +1,202 @@
+{
+  "edges": [
+    {
+      "opening_id": "O_Alekhine",
+      "endgame_id": "E_Lucena",
+      "motif_id": "gamma_AlekhineLucena",
+      "p_hat": 1.0,
+      "support_games": 7917,
+      "data_source": "to_be_computed_from_master_database",
+      "notes": "Placeholder edge: empirically estimate P(Lucena | Alekhine, motif) from large PGN corpus."
+    },
+    {
+      "opening_id": "O_Scandinavian",
+      "endgame_id": "E_Philidor",
+      "motif_id": "gamma_ScandinavianPhilidor",
+      "p_hat": 1.0,
+      "support_games": 11663,
+      "data_source": "to_be_computed_from_master_database",
+      "notes": "Placeholder edge: estimate probability of Philidor-type rook endgames arising from Scandinavian games with early queen trades."
+    },
+    {
+      "opening_id": "O_Dutch",
+      "endgame_id": "E_Opposition",
+      "motif_id": "gamma_DutchOCB",
+      "p_hat": 0.5,
+      "support_games": 10796,
+      "data_source": "to_be_computed_from_master_database",
+      "notes": "Dutch structures may simplify to opposite-color bishop endings where opposition and king placement still matter."
+    },
+    {
+      "opening_id": "O_Dutch",
+      "endgame_id": "E_KeySquares",
+      "motif_id": "gamma_DutchOCB",
+      "p_hat": 0.5,
+      "support_games": 10796,
+      "data_source": "to_be_computed_from_master_database",
+      "notes": "In some Dutch games, pawn structures plus opposite bishops lead to key-square based promotion races."
+    },
+    {
+      "opening_id": "O_Philidor",
+      "endgame_id": "E_Opposition",
+      "motif_id": "gamma_PhilidorKP",
+      "p_hat": 0.5,
+      "support_games": 2992,
+      "data_source": "to_be_computed_from_master_database",
+      "notes": "Philidor structures often collapse into king and pawn endgames where opposition is decisive."
+    },
+    {
+      "opening_id": "O_Philidor",
+      "endgame_id": "E_KeySquares",
+      "motif_id": "gamma_PhilidorKP",
+      "p_hat": 0.5,
+      "support_games": 2992,
+      "data_source": "to_be_computed_from_master_database",
+      "notes": "Same motif, but measured by whether the final position matches key-square criteria."
+    },
+    {
+      "opening_id": "O_Nimzowitsch",
+      "endgame_id": "E_RuleSquare",
+      "motif_id": "gamma_NimzoSquare",
+      "p_hat": 1.0,
+      "support_games": 2217,
+      "data_source": "to_be_computed_from_master_database",
+      "notes": "Nimzowitsch games with sharp pawn breaks can reduce to a single passed pawn vs king race measured by the rule of the square."
+    },
+    {
+      "opening_id": "O_Grunfeld",
+      "endgame_id": "E_Reti",
+      "motif_id": "gamma_GrunfeldReti",
+      "p_hat": 1.0,
+      "support_games": 16622,
+      "data_source": "to_be_computed_from_master_database",
+      "notes": "Symbolic edge: Gr\u00fcnfeld central exchanges simplifying into R\u00e9ti-style king-and-pawn race."
+    },
+    {
+      "opening_id": "O_RuyClosed",
+      "endgame_id": "E_WrongColorBishop",
+      "motif_id": "gamma_RuyWrongColor",
+      "p_hat": 1.0,
+      "support_games": 41922,
+      "data_source": "to_be_computed_from_master_database",
+      "notes": "Symbolic edge: Closed Ruy Lopez leading to wrong-color bishop plus rook pawn ending."
+    },
+    {
+      "opening_id": "O_SicilianMoscow",
+      "endgame_id": "E_Saavedra",
+      "motif_id": "gamma_MoscowSaavedra",
+      "p_hat": 1.0,
+      "support_games": 11527,
+      "data_source": "to_be_computed_from_master_database",
+      "notes": "Symbolic edge: Moscow Sicilian simplifying to rook+pawn vs rook with Saavedra-like winning idea."
+    },
+    {
+      "opening_id": "O_CaroKannAdvance",
+      "endgame_id": "E_LaskerRook",
+      "motif_id": "gamma_CaroLasker",
+      "p_hat": 1.0,
+      "support_games": 11614,
+      "data_source": "to_be_computed_from_master_database",
+      "notes": "Symbolic edge: Advance Caro-Kann structure leading to a worse rook endgame held by Lasker-type defense."
+    },
+    {
+      "opening_id": "O_FrenchWinawer",
+      "endgame_id": "E_Vancura",
+      "motif_id": "gamma_WinawerVancura",
+      "p_hat": 1.0,
+      "support_games": 12664,
+      "data_source": "to_be_computed_from_master_database",
+      "notes": "Symbolic edge: Winawer pawn imbalances simplifying into rook+rook pawn vs rook with Vancura defense."
+    },
+    {
+      "opening_id": "O_ClosedSicilian",
+      "endgame_id": "E_BishopVsKnight",
+      "motif_id": "gamma_ClosedSicilian_BvN",
+      "p_hat": 1.0,
+      "support_games": 17344,
+      "data_source": "to_be_computed_from_master_database",
+      "notes": ""
+    },
+    {
+      "opening_id": "O_QGA",
+      "endgame_id": "E_TwoKnightsVsPawn",
+      "motif_id": "gamma_QGA_TwoKnightsPawn",
+      "p_hat": 1.0,
+      "support_games": 10043,
+      "data_source": "to_be_computed_from_master_database",
+      "notes": ""
+    },
+    {
+      "opening_id": "O_Petroff",
+      "endgame_id": "E_ShoulderZugzwang",
+      "motif_id": "gamma_Petroff_Shoulder",
+      "p_hat": 1.0,
+      "support_games": 11708,
+      "data_source": "to_be_computed_from_master_database",
+      "notes": ""
+    },
+    {
+      "opening_id": "O_d4e6",
+      "endgame_id": "E_KlingHorwitz",
+      "motif_id": "gamma_d4e6_KlingHorwitz",
+      "p_hat": 1.0,
+      "support_games": 19518,
+      "data_source": "to_be_computed_from_master_database",
+      "notes": ""
+    },
+    {
+      "opening_id": "O_SymEnglish",
+      "endgame_id": "E_OCBishops",
+      "motif_id": "gamma_SymEnglish_OCB",
+      "p_hat": 1.0,
+      "support_games": 9095,
+      "data_source": "to_be_computed_from_master_database",
+      "notes": ""
+    },
+    {
+      "opening_id": "O_SicilianNajdorf",
+      "endgame_id": "E_RBvsRN",
+      "motif_id": "gamma_Najdorf_RBvsRN",
+      "p_hat": 1.0,
+      "support_games": 34143,
+      "data_source": "to_be_computed_from_master_database",
+      "notes": ""
+    },
+    {
+      "opening_id": "O_RuyBerlin",
+      "endgame_id": "E_Fortress",
+      "motif_id": "gamma_Berlin_Fortress",
+      "p_hat": 1.0,
+      "support_games": 12039,
+      "data_source": "to_be_computed_from_master_database",
+      "notes": ""
+    },
+    {
+      "opening_id": "O_QGDSlav",
+      "endgame_id": "E_Stamma",
+      "motif_id": "gamma_QGDSlav_Stamma",
+      "p_hat": 1.0,
+      "support_games": 49283,
+      "data_source": "to_be_computed_from_master_database",
+      "notes": ""
+    },
+    {
+      "opening_id": "O_NimzoRubinstein",
+      "endgame_id": "E_TroitzkyLine",
+      "motif_id": "gamma_NimzoRubinstein_Troitzky",
+      "p_hat": 1.0,
+      "support_games": 12367,
+      "data_source": "to_be_computed_from_master_database",
+      "notes": ""
+    },
+    {
+      "opening_id": "O_KIDClassical",
+      "endgame_id": "E_CochraneDefense",
+      "motif_id": "gamma_KID_Cochrane",
+      "p_hat": 1.0,
+      "support_games": 6715,
+      "data_source": "to_be_computed_from_master_database",
+      "notes": ""
+    }
+  ]
+}

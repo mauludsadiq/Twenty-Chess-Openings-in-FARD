@@ -1,0 +1,136 @@
+{
+  "edges": [
+    {
+      "edge_key": "O_Alekhine|E_Lucena|gamma_AlekhineLucena",
+      "L_count": 0,
+      "L_sum": 0.0,
+      "L_mean": null
+    },
+    {
+      "edge_key": "O_Scandinavian|E_Philidor|gamma_ScandinavianPhilidor",
+      "L_count": 0,
+      "L_sum": 0.0,
+      "L_mean": null
+    },
+    {
+      "edge_key": "O_Dutch|E_Opposition|gamma_DutchOCB",
+      "L_count": 0,
+      "L_sum": 0.0,
+      "L_mean": null
+    },
+    {
+      "edge_key": "O_Dutch|E_KeySquares|gamma_DutchOCB",
+      "L_count": 0,
+      "L_sum": 0.0,
+      "L_mean": null
+    },
+    {
+      "edge_key": "O_Philidor|E_Opposition|gamma_PhilidorKP",
+      "L_count": 0,
+      "L_sum": 0.0,
+      "L_mean": null
+    },
+    {
+      "edge_key": "O_Philidor|E_KeySquares|gamma_PhilidorKP",
+      "L_count": 0,
+      "L_sum": 0.0,
+      "L_mean": null
+    },
+    {
+      "edge_key": "O_Nimzowitsch|E_RuleSquare|gamma_NimzoSquare",
+      "L_count": 0,
+      "L_sum": 0.0,
+      "L_mean": null
+    },
+    {
+      "edge_key": "O_Grunfeld|E_Reti|gamma_GrunfeldReti",
+      "L_count": 0,
+      "L_sum": 0.0,
+      "L_mean": null
+    },
+    {
+      "edge_key": "O_RuyClosed|E_WrongColorBishop|gamma_RuyWrongColor",
+      "L_count": 0,
+      "L_sum": 0.0,
+      "L_mean": null
+    },
+    {
+      "edge_key": "O_SicilianMoscow|E_Saavedra|gamma_MoscowSaavedra",
+      "L_count": 0,
+      "L_sum": 0.0,
+      "L_mean": null
+    },
+    {
+      "edge_key": "O_CaroKannAdvance|E_LaskerRook|gamma_CaroLasker",
+      "L_count": 0,
+      "L_sum": 0.0,
+      "L_mean": null
+    },
+    {
+      "edge_key": "O_FrenchWinawer|E_Vancura|gamma_WinawerVancura",
+      "L_count": 0,
+      "L_sum": 0.0,
+      "L_mean": null
+    },
+    {
+      "edge_key": "O_ClosedSicilian|E_BishopVsKnight|gamma_ClosedSicilian_BvN",
+      "L_count": 0,
+      "L_sum": 0.0,
+      "L_mean": null
+    },
+    {
+      "edge_key": "O_QGA|E_TwoKnightsVsPawn|gamma_QGA_TwoKnightsPawn",
+      "L_count": 0,
+      "L_sum": 0.0,
+      "L_mean": null
+    },
+    {
+      "edge_key": "O_Petroff|E_ShoulderZugzwang|gamma_Petroff_Shoulder",
+      "L_count": 0,
+      "L_sum": 0.0,
+      "L_mean": null
+    },
+    {
+      "edge_key": "O_d4e6|E_KlingHorwitz|gamma_d4e6_KlingHorwitz",
+      "L_count": 0,
+      "L_sum": 0.0,
+      "L_mean": null
+    },
+    {
+      "edge_key": "O_SymEnglish|E_OCBishops|gamma_SymEnglish_OCB",
+      "L_count": 0,
+      "L_sum": 0.0,
+      "L_mean": null
+    },
+    {
+      "edge_key": "O_SicilianNajdorf|E_RBvsRN|gamma_Najdorf_RBvsRN",
+      "L_count": 0,
+      "L_sum": 0.0,
+      "L_mean": null
+    },
+    {
+      "edge_key": "O_RuyBerlin|E_Fortress|gamma_Berlin_Fortress",
+      "L_count": 0,
+      "L_sum": 0.0,
+      "L_mean": null
+    },
+    {
+      "edge_key": "O_QGDSlav|E_Stamma|gamma_QGDSlav_Stamma",
+      "L_count": 0,
+      "L_sum": 0.0,
+      "L_mean": null
+    },
+    {
+      "edge_key": "O_NimzoRubinstein|E_TroitzkyLine|gamma_NimzoRubinstein_Troitzky",
+      "L_count": 0,
+      "L_sum": 0.0,
+      "L_mean": null
+    },
+    {
+      "edge_key": "O_KIDClassical|E_CochraneDefense|gamma_KID_Cochrane",
+      "L_count": 0,
+      "L_sum": 0.0,
+      "L_mean": null
+    }
+  ]
+}

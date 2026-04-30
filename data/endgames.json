@@ -1,0 +1,500 @@
+{
+  "schema": {
+    "id": "string",
+    "name": "string",
+    "material_signature": {
+      "white": {
+        "piece": "count"
+      },
+      "black": {
+        "piece": "count"
+      }
+    },
+    "typical_fen_examples": [
+      "string"
+    ],
+    "key_concepts": [
+      "string"
+    ],
+    "tags": [
+      "string"
+    ],
+    "notes": "string"
+  },
+  "endgames": [
+    {
+      "id": "E_Lucena",
+      "name": "Lucena Position",
+      "material_signature": {
+        "white": {
+          "K": 1,
+          "R": 1,
+          "P": 1
+        },
+        "black": {
+          "K": 1,
+          "R": 1
+        }
+      },
+      "typical_fen_examples": [
+        "8/3k4/3P4/3R4/8/8/8/3K4 w - - 0 1"
+      ],
+      "key_concepts": [
+        "bridge_building",
+        "rook_on_4th_rank",
+        "cutting_off_king",
+        "rook_pawn_promotion_support"
+      ],
+      "tags": [
+        "rook_endgame",
+        "technical_win"
+      ],
+      "notes": "Standard winning technique with rook + pawn vs rook when the pawn reaches the 7th rank and the attacking king is cut off."
+    },
+    {
+      "id": "E_Philidor",
+      "name": "Philidor Position",
+      "material_signature": {
+        "white": {
+          "K": 1,
+          "R": 1
+        },
+        "black": {
+          "K": 1,
+          "R": 1,
+          "P": 1
+        }
+      },
+      "typical_fen_examples": [
+        "8/8/3r4/3k4/8/3R4/8/3K4 w - - 0 1"
+      ],
+      "key_concepts": [
+        "3rd_rank_defence",
+        "rook_activity",
+        "checking_from_side"
+      ],
+      "tags": [
+        "rook_endgame",
+        "technical_draw"
+      ],
+      "notes": "Defensive setup with the rook on the 3rd rank preventing the pawn from advancing and forcing a draw."
+    },
+    {
+      "id": "E_Opposition",
+      "name": "King Opposition",
+      "material_signature": {
+        "white": {
+          "K": 1,
+          "P": 1
+        },
+        "black": {
+          "K": 1
+        }
+      },
+      "typical_fen_examples": [
+        "8/8/8/3k4/3P4/8/8/3K4 w - - 0 1"
+      ],
+      "key_concepts": [
+        "zugzwang",
+        "front_opposition",
+        "distant_opposition"
+      ],
+      "tags": [
+        "pawn_endgame",
+        "king_opposition"
+      ],
+      "notes": "Critical king and pawn vs king positions where controlling opposition decides promotion."
+    },
+    {
+      "id": "E_RuleSquare",
+      "name": "Rule of the Square",
+      "material_signature": {
+        "white": {
+          "K": 1,
+          "P": 1
+        },
+        "black": {
+          "K": 1
+        }
+      },
+      "typical_fen_examples": [
+        "8/8/8/3k4/8/3P4/8/3K4 w - - 0 1"
+      ],
+      "key_concepts": [
+        "king_distance",
+        "pawn_race",
+        "geometric_promotion_criterion"
+      ],
+      "tags": [
+        "pawn_endgame",
+        "geometry_rule"
+      ],
+      "notes": "Determines if the defending king can catch a passed pawn: if it can enter the square of the pawn, the pawn can be stopped."
+    },
+    {
+      "id": "E_KeySquares",
+      "name": "Key Squares",
+      "material_signature": {
+        "white": {
+          "K": 1,
+          "P": 1
+        },
+        "black": {
+          "K": 1
+        }
+      },
+      "typical_fen_examples": [
+        "8/8/8/3k4/3P4/8/8/3K4 w - - 0 1"
+      ],
+      "key_concepts": [
+        "promotion_control",
+        "king_invasion",
+        "critical_squares"
+      ],
+      "tags": [
+        "pawn_endgame",
+        "promotion_technique"
+      ],
+      "notes": "Squares that, if occupied by the attacking king, guarantee promotion of a pawn regardless of the defender's moves."
+    },
+    {
+      "id": "E_Saavedra",
+      "name": "Saavedra Position",
+      "material_signature": {
+        "white": {
+          "king": 1,
+          "rook": 1,
+          "pawn": 1
+        },
+        "black": {
+          "king": 1,
+          "rook": 1
+        }
+      },
+      "typical_fen_examples": [
+        "8/2P5/2K5/1k6/8/8/8/4R3 w - - 0 1"
+      ],
+      "key_concepts": [
+        "underpromotion",
+        "rook_sacrifice",
+        "winning_technique",
+        "tactical_motif"
+      ],
+      "tags": [
+        "rook_endgame",
+        "study",
+        "underpromotion",
+        "win"
+      ],
+      "notes": "Famous study where White wins by sacrificing the rook and underpromoting the pawn to a rook or bishop."
+    },
+    {
+      "id": "E_Reti",
+      "name": "Réti Maneuver",
+      "material_signature": {
+        "white": {
+          "king": 1,
+          "pawn": 1
+        },
+        "black": {
+          "king": 1,
+          "pawn": 1
+        }
+      },
+      "typical_fen_examples": [
+        "8/8/8/3k4/8/5P2/8/3K4 w - - 0 1"
+      ],
+      "key_concepts": [
+        "king_geometry",
+        "double_purpose_path",
+        "zugzwang",
+        "pawn_race"
+      ],
+      "tags": [
+        "pawn_endgame",
+        "study",
+        "zugzwang",
+        "geometry"
+      ],
+      "notes": "Classic king maneuver where White simultaneously stops a passed pawn and supports their own pawn’s promotion."
+    },
+    {
+      "id": "E_WrongColorBishop",
+      "name": "Wrong-Color Bishop Ending",
+      "material_signature": {
+        "white": {
+          "king": 1,
+          "bishop": 1,
+          "pawn": 1
+        },
+        "black": {
+          "king": 1
+        }
+      },
+      "typical_fen_examples": [
+        "8/7P/8/8/8/8/6K1/6B1 w - - 0 1"
+      ],
+      "key_concepts": [
+        "wrong_color_bishop",
+        "rook_pawn",
+        "fortress",
+        "drawing_chance"
+      ],
+      "tags": [
+        "minor_piece_endgame",
+        "drawing_motif",
+        "rook_pawn",
+        "practical_theory"
+      ],
+      "notes": "Bishop does not control the promotion square of the rook pawn, often leading to a theoretical draw despite extra material."
+    },
+    {
+      "id": "E_LaskerRook",
+      "name": "Lasker Rook Defense",
+      "material_signature": {
+        "white": {
+          "king": 1,
+          "rook": 1
+        },
+        "black": {
+          "king": 1,
+          "rook": 1,
+          "pawn": 1
+        }
+      },
+      "typical_fen_examples": [
+        "8/8/8/3k4/8/8/3r4/3RK3 w - - 0 1"
+      ],
+      "key_concepts": [
+        "active_rook_defense",
+        "checking_from_behind",
+        "drawing_technique",
+        "rook_endgame"
+      ],
+      "tags": [
+        "rook_endgame",
+        "defensive_technique",
+        "draw"
+      ],
+      "notes": "Defensive rook maneuver that uses activity and checks to hold inferior rook-and-pawn endgames."
+    },
+    {
+      "id": "E_Vancura",
+      "name": "Vancura Position",
+      "material_signature": {
+        "white": {
+          "king": 1,
+          "rook": 1,
+          "pawn": 1
+        },
+        "black": {
+          "king": 1,
+          "rook": 1
+        }
+      },
+      "typical_fen_examples": [
+        "8/7P/8/8/8/8/3R2K1/6k1 b - - 0 1"
+      ],
+      "key_concepts": [
+        "third_rank_defense",
+        "side_checks",
+        "rook_vs_rook_pawn",
+        "drawing_technique"
+      ],
+      "tags": [
+        "rook_endgame",
+        "defensive_technique",
+        "draw",
+        "theoretical"
+      ],
+      "notes": "Characteristic rook setup on the side and third rank to draw against a rook and rook-pawn, even with the pawn advanced."
+    },
+    {
+      "id": "E_TroitzkyLine",
+      "name": "Troitzky Line (Two Knights vs Pawn)",
+      "material_signature": {
+        "white": {},
+        "black": {}
+      },
+      "typical_fen_examples": [],
+      "key_concepts": [
+        "two_knights_vs_pawn",
+        "troitzky_line",
+        "tablebase_precision"
+      ],
+      "tags": [
+        "minor_piece_endgame",
+        "study",
+        "win_region"
+      ],
+      "notes": "Critical line separating theoretical wins and draws for two knights vs pawn."
+    },
+    {
+      "id": "E_Fortress",
+      "name": "Fortress",
+      "material_signature": {
+        "white": {},
+        "black": {}
+      },
+      "typical_fen_examples": [],
+      "key_concepts": [
+        "fortress",
+        "defensive_construction"
+      ],
+      "tags": [
+        "general_endgame",
+        "defence",
+        "draw"
+      ],
+      "notes": "General fortress motif where no progress can be made."
+    },
+    {
+      "id": "E_ShoulderZugzwang",
+      "name": "Shoulder Zugzwang",
+      "material_signature": {
+        "white": {},
+        "black": {}
+      },
+      "typical_fen_examples": [],
+      "key_concepts": [
+        "shouldering",
+        "zugzwang",
+        "king_pawn"
+      ],
+      "tags": [
+        "pawn_endgame",
+        "zugzwang"
+      ],
+      "notes": "King shouldering and zugzwang patterns in king+pawn vs king endings."
+    },
+    {
+      "id": "E_Stamma",
+      "name": "Stamma Position",
+      "material_signature": {
+        "white": {},
+        "black": {}
+      },
+      "typical_fen_examples": [],
+      "key_concepts": [
+        "bishop_vs_knight",
+        "defence",
+        "drawing_technique"
+      ],
+      "tags": [
+        "minor_piece_endgame",
+        "study"
+      ],
+      "notes": "Classical study position illustrating bishop vs knight drawing resources."
+    },
+    {
+      "id": "E_KlingHorwitz",
+      "name": "Kling-Horwitz Defense",
+      "material_signature": {
+        "white": {},
+        "black": {}
+      },
+      "typical_fen_examples": [],
+      "key_concepts": [
+        "blocked_pawns",
+        "rook_defence"
+      ],
+      "tags": [
+        "rook_endgame",
+        "defence"
+      ],
+      "notes": "Defensive setup with blocked pawns in rook endings."
+    },
+    {
+      "id": "E_CochraneDefense",
+      "name": "Cochrane Defense (R vs 2P)",
+      "material_signature": {
+        "white": {},
+        "black": {}
+      },
+      "typical_fen_examples": [],
+      "key_concepts": [
+        "rook_vs_two_pawns",
+        "defence",
+        "precise_play"
+      ],
+      "tags": [
+        "rook_endgame",
+        "technical_endgame"
+      ],
+      "notes": "Theoretical defence for rook vs two connected passed pawns."
+    },
+    {
+      "id": "E_TwoKnightsVsPawn",
+      "name": "Two Knights vs Pawn (Troitzky)",
+      "material_signature": {
+        "white": {},
+        "black": {}
+      },
+      "typical_fen_examples": [],
+      "key_concepts": [
+        "two_knights",
+        "pawn",
+        "troitzky_region"
+      ],
+      "tags": [
+        "minor_piece_endgame",
+        "study"
+      ],
+      "notes": "Practical version of two knights vs pawn endgames around the Troitzky line."
+    },
+    {
+      "id": "E_BishopVsKnight",
+      "name": "Bishop vs Knight Ending",
+      "material_signature": {
+        "white": {},
+        "black": {}
+      },
+      "typical_fen_examples": [],
+      "key_concepts": [
+        "bishop_vs_knight",
+        "good_bishop",
+        "outposts"
+      ],
+      "tags": [
+        "minor_piece_endgame"
+      ],
+      "notes": "General bishop vs knight endgames and typical winning/drawing motifs."
+    },
+    {
+      "id": "E_OCBishops",
+      "name": "Opposite-Color Bishops Ending",
+      "material_signature": {
+        "white": {},
+        "black": {}
+      },
+      "typical_fen_examples": [],
+      "key_concepts": [
+        "opposite_colour_bishops",
+        "drawish_tendency",
+        "attack"
+      ],
+      "tags": [
+        "bishop_endgame",
+        "drawish"
+      ],
+      "notes": "Opposite-colour bishop endgames, famous for high drawing margin."
+    },
+    {
+      "id": "E_RBvsRN",
+      "name": "Rook+Bishop vs Rook+Knight",
+      "material_signature": {
+        "white": {},
+        "black": {}
+      },
+      "typical_fen_examples": [],
+      "key_concepts": [
+        "rook_bishop_vs_rook_knight",
+        "imbalanced"
+      ],
+      "tags": [
+        "piece_imbalance_endgame"
+      ],
+      "notes": "Imbalanced endgames with rook+bishop vs rook+knight."
+    }
+  ]
+}

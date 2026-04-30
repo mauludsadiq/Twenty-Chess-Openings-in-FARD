@@ -1,0 +1,473 @@
+{
+  "schema": {
+    "id": "string",
+    "name": "string",
+    "opening_ids": [
+      "string"
+    ],
+    "description": "string",
+    "pgn_features": {
+      "max_queen_exchange_move": "int|null",
+      "min_piece_trades": "int|null",
+      "notes": "string"
+    },
+    "fen_pattern_rules": [
+      "string"
+    ],
+    "tags": [
+      "string"
+    ]
+  },
+  "motifs": [
+    {
+      "id": "gamma_AlekhineLucena",
+      "name": "Alekhine central storm to Lucena",
+      "opening_ids": [
+        "O_Alekhine"
+      ],
+      "description": "White overextends central pawns against Alekhine; queens and minors are exchanged, leading to a rook + outside passed pawn vs rook endgame.",
+      "pgn_features": {
+        "max_queen_exchange_move": 25,
+        "min_piece_trades": 6,
+        "notes": "Game must feature early central pawn advances (e4-e5, d4) and large-scale minor piece exchanges."
+      },
+      "fen_pattern_rules": [
+        "phase == 'endgame'",
+        "material_white in {{K,R,P}, {K,R,2P}}",
+        "material_black in {{K,R}, {K,R,P}}",
+        "exists_outside_passed_pawn(side='any', rank>=5)",
+        "attacking_rook_behind_passed_pawn == true"
+      ],
+      "tags": [
+        "rook_endgame",
+        "outside_passed_pawn",
+        "technical_win_setup"
+      ]
+    },
+    {
+      "id": "gamma_ScandinavianPhilidor",
+      "name": "Scandinavian queen trade to Philidor rook defence",
+      "opening_ids": [
+        "O_Scandinavian"
+      ],
+      "description": "Early queen trade and symmetric pawn structure steers the game into a rook vs rook+pawn endgame of Philidor type.",
+      "pgn_features": {
+        "max_queen_exchange_move": 15,
+        "min_piece_trades": 4,
+        "notes": "1.e4 d5 followed by exd5 Qxd5 and an early queen swap; game simplifies quickly."
+      },
+      "fen_pattern_rules": [
+        "phase == 'endgame'",
+        "material_white == {K:1,R:1} and material_black in [{K:1,R:1,P:1},{K:1,R:1,2P:1}] or vice_versa",
+        "defending_rook_on_3rd_rank == true",
+        "pawn_on_5th_or_6th_rank(side='attacker') == true"
+      ],
+      "tags": [
+        "rook_endgame",
+        "technical_draw",
+        "third_rank_defence"
+      ]
+    },
+    {
+      "id": "gamma_DutchOCB",
+      "name": "Dutch dark-square clamp to opposite-color bishops",
+      "opening_ids": [
+        "O_Dutch"
+      ],
+      "description": "Dutch structures with ...f5-e6-d6 lead to exchanges of queens and rooks, leaving opposite-color bishops and fixed pawn chains.",
+      "pgn_features": {
+        "max_queen_exchange_move": 25,
+        "min_piece_trades": 6,
+        "notes": "Typical manoeuvres: ...f5, ...e6, ...d6, piece play around dark squares, then heavy-piece exchanges."
+      },
+      "fen_pattern_rules": [
+        "phase == 'endgame'",
+        "both_sides_have_one_bishop == true",
+        "bishops_on_opposite_colors == true",
+        "no_passed_pawns_yet == true",
+        "pawn_chains_blocked == true"
+      ],
+      "tags": [
+        "minor_piece_endgame",
+        "opposite_color_bishops",
+        "blockade"
+      ]
+    },
+    {
+      "id": "gamma_PhilidorKP",
+      "name": "Philidor simplification to king+pawn races",
+      "opening_ids": [
+        "O_Philidor"
+      ],
+      "description": "Black's compact Philidor setup leads to mass piece exchanges and a pure king+pawn ending where opposition and key squares decide.",
+      "pgn_features": {
+        "max_queen_exchange_move": 30,
+        "min_piece_trades": 8,
+        "notes": "Quiet manoeuvring from a Philidor structure with many trades and symmetric central pawns."
+      },
+      "fen_pattern_rules": [
+        "phase == 'endgame'",
+        "only_kings_and_pawns_on_board == true",
+        "exists_passed_pawn(side='any') == true",
+        "kings_centralised == true"
+      ],
+      "tags": [
+        "pawn_endgame",
+        "opposition",
+        "key_squares"
+      ]
+    },
+    {
+      "id": "gamma_NimzoSquare",
+      "name": "Nimzowitsch simplification to rule-of-the-square pawn race",
+      "opening_ids": [
+        "O_Nimzowitsch"
+      ],
+      "description": "Unorthodox piece placement leads to unusual pawn trades; one side obtains a far advanced passed pawn vs lone king, invoking the rule of the square.",
+      "pgn_features": {
+        "max_queen_exchange_move": 25,
+        "min_piece_trades": 6,
+        "notes": "1.e4 Nc6 with flexible development and later piece exchanges; eventually queens and most pieces disappear."
+      },
+      "fen_pattern_rules": [
+        "phase == 'endgame'",
+        "material_white in [{K:1,P:1},{K:1,2P:1}] and material_black == {K:1} or vice_versa",
+        "exists_passed_pawn(rank>=5) == true",
+        "evaluate_rule_of_square == true"
+      ],
+      "tags": [
+        "pawn_endgame",
+        "geometric_rule",
+        "passed_pawn_race"
+      ]
+    },
+    {
+      "id": "gamma_GrunfeldReti",
+      "name": "Grünfeld central liquidation to Réti pawn race",
+      "opening_ids": [
+        "O_Grunfeld"
+      ],
+      "description": "Grünfeld structure where central pawns are exchanged, pieces come off, and the game simplifies into a king-and-pawn race resembling the Réti motif.",
+      "pgn_features": {
+        "max_queen_exchange_move": 25,
+        "min_piece_trades": 6,
+        "notes": "Look for early central exchanges and heavy-piece trades leading to a pure pawn endgame."
+      },
+      "fen_pattern_rules": [
+        "phase == 'endgame'",
+        "pawn_race_pattern == 'Reti_like'"
+      ],
+      "tags": [
+        "grunfeld",
+        "pawn_endgame",
+        "reti_motif"
+      ]
+    },
+    {
+      "id": "gamma_RuyWrongColor",
+      "name": "Ruy Lopez maneuvering to wrong-color bishop ending",
+      "opening_ids": [
+        "O_RuyClosed"
+      ],
+      "description": "Closed Ruy Lopez where heavy pieces are exchanged, leaving bishops vs pawns and a rook pawn whose promotion square is of the opposite color of the bishop.",
+      "pgn_features": {
+        "max_queen_exchange_move": 30,
+        "min_piece_trades": 8,
+        "notes": "Typical long maneuvering Ruy with later exchanges leaving bishop + rook pawn vs king."
+      },
+      "fen_pattern_rules": [
+        "phase == 'endgame'",
+        "has_bishop_and_rook_pawn == True",
+        "promotion_square_wrong_color == True"
+      ],
+      "tags": [
+        "ruy_lopez",
+        "minor_piece_endgame",
+        "wrong_color_bishop"
+      ]
+    },
+    {
+      "id": "gamma_MoscowSaavedra",
+      "name": "Moscow simplification to Saavedra-type rook ending",
+      "opening_ids": [
+        "O_SicilianMoscow"
+      ],
+      "description": "Moscow Sicilian with early Bb5+ leading to a simplified rook-and-pawn vs rook endgame with tactical winning motifs reminiscent of Saavedra.",
+      "pgn_features": {
+        "max_queen_exchange_move": 20,
+        "min_piece_trades": 7,
+        "notes": "Anti-Sicilian with early check, queens off early, and a sharp rook+pawn vs rook finish."
+      },
+      "fen_pattern_rules": [
+        "phase == 'endgame'",
+        "material_pattern == 'R+P_vs_R'",
+        "saavedra_like_tactics == True"
+      ],
+      "tags": [
+        "sicilian",
+        "moscow",
+        "rook_endgame",
+        "saavedra_motif"
+      ]
+    },
+    {
+      "id": "gamma_CaroLasker",
+      "name": "Caro-Kann Advance to Lasker rook defense",
+      "opening_ids": [
+        "O_CaroKannAdvance"
+      ],
+      "description": "Advance Caro-Kann structure where Black defends a slightly worse rook-and-pawn endgame using active-rook drawing techniques similar to Lasker’s defense.",
+      "pgn_features": {
+        "max_queen_exchange_move": 26,
+        "min_piece_trades": 7,
+        "notes": "Caro-Kann pawn chain, queens off, then Black holds a worse rook+ pawn endgame by activity."
+      },
+      "fen_pattern_rules": [
+        "phase == 'endgame'",
+        "rook_vs_rook_pawn == True",
+        "active_defending_rook == True"
+      ],
+      "tags": [
+        "caro_kann",
+        "rook_endgame",
+        "defensive_technique"
+      ]
+    },
+    {
+      "id": "gamma_WinawerVancura",
+      "name": "Winawer imbalance to Vancura rook defense",
+      "opening_ids": [
+        "O_FrenchWinawer"
+      ],
+      "description": "Winawer positions with queenside pawn imbalances that eventually simplify into a rook + rook pawn vs rook ending where the defender uses a Vancura-style third-rank defense.",
+      "pgn_features": {
+        "max_queen_exchange_move": 28,
+        "min_piece_trades": 8,
+        "notes": "French Winawer pawn structure, then heavy-piece trades, then rook+rook pawn vs rook with side-checks."
+      },
+      "fen_pattern_rules": [
+        "phase == 'endgame'",
+        "rook_plus_rook_pawn_vs_rook == True",
+        "third_rank_defense_pattern == True"
+      ],
+      "tags": [
+        "french",
+        "winawer",
+        "rook_endgame",
+        "vancura_motif"
+      ]
+    },
+    {
+      "id": "gamma_ClosedSicilian_BvN",
+      "name": "Closed Sicilian to Bishop vs Knight ending",
+      "opening_ids": [
+        "O_ClosedSicilian"
+      ],
+      "description": "Slow kingside attack with piece trades leaving bishop vs knight structures.",
+      "pgn_features": {
+        "max_queen_exchange_move": 25,
+        "min_piece_trades": 6,
+        "notes": "Closed center, many minor piece trades, queens exchanged by move ~25."
+      },
+      "fen_pattern_rules": [
+        "phase == 'endgame'",
+        "minor_piece_imbalance('B','N')"
+      ],
+      "tags": [
+        "closed_sicilian",
+        "minor_piece_endgame"
+      ]
+    },
+    {
+      "id": "gamma_QGA_TwoKnightsPawn",
+      "name": "QGA simplification to two knights vs pawn",
+      "opening_ids": [
+        "O_QGA"
+      ],
+      "description": "Central exchanges leading to two knights vs pawn technical ending.",
+      "pgn_features": {
+        "max_queen_exchange_move": 20,
+        "min_piece_trades": 8,
+        "notes": "Open central files with heavy simplification."
+      },
+      "fen_pattern_rules": [
+        "phase == 'endgame'",
+        "two_knights_vs_pawn_pattern()"
+      ],
+      "tags": [
+        "qga",
+        "minor_piece_study"
+      ]
+    },
+    {
+      "id": "gamma_Petroff_Shoulder",
+      "name": "Petroff to shoulder zugzwang king+pawn ending",
+      "opening_ids": [
+        "O_Petroff"
+      ],
+      "description": "Symmetrical exchanges drifting into king+pawn shoulder zugzwang positions.",
+      "pgn_features": {
+        "max_queen_exchange_move": 25,
+        "min_piece_trades": 6,
+        "notes": "Petroff symmetry, early queen trades, many central pawn exchanges."
+      },
+      "fen_pattern_rules": [
+        "phase == 'endgame'",
+        "king_pawn_shouldering_pattern()"
+      ],
+      "tags": [
+        "petroff",
+        "pawn_endgame"
+      ]
+    },
+    {
+      "id": "gamma_d4e6_KlingHorwitz",
+      "name": "1.d4 e6 systems to Kling-Horwitz defensive setup",
+      "opening_ids": [
+        "O_d4e6"
+      ],
+      "description": "Blocked pawn chains with rooks behind pawn structures yielding Kling-Horwitz defenses.",
+      "pgn_features": {
+        "max_queen_exchange_move": 30,
+        "min_piece_trades": 6,
+        "notes": "Closed center with heavy-piece simplification."
+      },
+      "fen_pattern_rules": [
+        "phase == 'endgame'",
+        "blocked_pawn_rook_defence_pattern()"
+      ],
+      "tags": [
+        "d4",
+        "closed_center",
+        "rook_endgame"
+      ]
+    },
+    {
+      "id": "gamma_SymEnglish_OCB",
+      "name": "Symmetrical English to opposite-colour bishops",
+      "opening_ids": [
+        "O_SymEnglish"
+      ],
+      "description": "Symmetrical English where piece trades and pawn structure create OCB endgames.",
+      "pgn_features": {
+        "max_queen_exchange_move": 25,
+        "min_piece_trades": 8,
+        "notes": "Multiple minor exchanges, bishops remaining on opposite colours."
+      },
+      "fen_pattern_rules": [
+        "phase == 'endgame'",
+        "opposite_colour_bishops()"
+      ],
+      "tags": [
+        "english",
+        "bishop_endgame"
+      ]
+    },
+    {
+      "id": "gamma_Najdorf_RBvsRN",
+      "name": "Najdorf complications to R+B vs R+N endgame",
+      "opening_ids": [
+        "O_SicilianNajdorf"
+      ],
+      "description": "Sharp Najdorf middlegame with piece trades leading to R+B vs R+N imbalance.",
+      "pgn_features": {
+        "max_queen_exchange_move": 35,
+        "min_piece_trades": 10,
+        "notes": "Complex middlegame resolving into piece-imbalanced rook endgame."
+      },
+      "fen_pattern_rules": [
+        "phase == 'endgame'",
+        "rb_vs_rn_pattern()"
+      ],
+      "tags": [
+        "sicilian",
+        "piece_imbalance"
+      ]
+    },
+    {
+      "id": "gamma_Berlin_Fortress",
+      "name": "Berlin endgame fortress",
+      "opening_ids": [
+        "O_RuyBerlin"
+      ],
+      "description": "Berlin queenless endgame evolving into fortress-type positions.",
+      "pgn_features": {
+        "max_queen_exchange_move": 15,
+        "min_piece_trades": 6,
+        "notes": "Early queen trade, symmetrical structure, fortress motifs."
+      },
+      "fen_pattern_rules": [
+        "phase == 'endgame'",
+        "fortress_pattern()"
+      ],
+      "tags": [
+        "berlin",
+        "fortress",
+        "rook_endgame"
+      ]
+    },
+    {
+      "id": "gamma_QGDSlav_Stamma",
+      "name": "Slav simplification to Stamma-type minor piece endgame",
+      "opening_ids": [
+        "O_QGDSlav"
+      ],
+      "description": "Solid Slav structures that trade to minor-piece Stamma-like studies.",
+      "pgn_features": {
+        "max_queen_exchange_move": 30,
+        "min_piece_trades": 7,
+        "notes": "Queenside pawn majority and minor-piece manoeuvring."
+      },
+      "fen_pattern_rules": [
+        "phase == 'endgame'",
+        "stamma_pattern()"
+      ],
+      "tags": [
+        "slav",
+        "minor_piece_endgame"
+      ]
+    },
+    {
+      "id": "gamma_NimzoRubinstein_Troitzky",
+      "name": "Nimzo-Indian Rubinstein to Troitzky-line style ending",
+      "opening_ids": [
+        "O_NimzoRubinstein"
+      ],
+      "description": "Nimzo Rubinstein where central structure and minor-piece trades lead to two knights vs pawn themes.",
+      "pgn_features": {
+        "max_queen_exchange_move": 30,
+        "min_piece_trades": 8,
+        "notes": "Typical Nimzo pressure with eventual minor-piece vs pawn ending."
+      },
+      "fen_pattern_rules": [
+        "phase == 'endgame'",
+        "two_knights_vs_pawn_pattern()"
+      ],
+      "tags": [
+        "nimzo_indian",
+        "study_endgame"
+      ]
+    },
+    {
+      "id": "gamma_KID_Cochrane",
+      "name": "KID classical to Cochrane-type rook vs pawns defence",
+      "opening_ids": [
+        "O_KIDClassical"
+      ],
+      "description": "Kingside attacks resolving into rook vs two connected passed pawns, Cochrane-style.",
+      "pgn_features": {
+        "max_queen_exchange_move": 40,
+        "min_piece_trades": 10,
+        "notes": "Sharp KID attack liquidating to R vs 2P."
+      },
+      "fen_pattern_rules": [
+        "phase == 'endgame'",
+        "rook_vs_two_pawns_pattern()"
+      ],
+      "tags": [
+        "kings_indian",
+        "rook_endgame"
+      ]
+    }
+  ]
+}
