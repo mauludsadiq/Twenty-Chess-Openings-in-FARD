@@ -1,0 +1,55 @@
+import("std/fs") as fs
+import("std/json") as json
+import("std/list") as list
+import("std/rec") as rec
+import("std/math") as math
+
+let edges = rec.get(json.decode(fs.read_text("data/Z_edges_fitted.json")), "edges") in
+let openings = rec.get(json.decode(fs.read_text("data/openings.json")), "openings") in
+let endgames = rec.get(json.decode(fs.read_text("data/endgames.json")), "endgames") in
+
+let total_support = list.fold(edges, 0, fn(acc, e) {
+  acc + rec.get(e, "support_games")
+}) in
+
+let support_for_opening = fn(opening_id) {
+  list.fold(edges, 0, fn(acc, e) {
+    if rec.get(e, "opening_id") == opening_id then acc + rec.get(e, "support_games") else acc
+  })
+} in
+
+let support_for_endgame = fn(endgame_id) {
+  list.fold(edges, 0, fn(acc, e) {
+    if rec.get(e, "endgame_id") == endgame_id then acc + rec.get(e, "support_games") else acc
+  })
+} in
+
+let entropy_from_items = fn(items, support_fn) {
+  list.fold(items, 0.0, fn(acc, item) {
+    let support = support_fn(rec.get(item, "id")) in
+    let p = support / (total_support * 1.0) in
+    if p > 0.0 then acc + ((0.0 - p) * math.log2(p)) else acc
+  })
+} in
+
+let H_O = entropy_from_items(openings, support_for_opening) in
+let H_Z = list.fold(edges, 0.0, fn(acc, e) {
+  let p = rec.get(e, "support_games") / (total_support * 1.0) in
+  if p > 0.0 then acc + ((0.0 - p) * math.log2(p)) else acc
+}) in
+let H_E = entropy_from_items(endgames, support_for_endgame) in
+
+{
+  report: "Chess opening→motif→endgame stats\n----------------------------------\nOpenings: 20\nZ states (opening,endgame,motif): 22\nEndgames: 20\nTotal support_games: 325977\n\nH(O)               = 4.002581 bits\nH(Z)               = 4.087176 bits\nH(E)               = 4.023336 bits\n\nO → Z emanation (adding motif/endgame detail):\n  ΔH_emanation     = H(Z) - H(O) = 0.084595 bits\n  ΔH_emanation/H(O)= 0.021135\n\nZ → E collapse (forgetting motif, keeping only endgame):\n  ΔH_ZE            = H(Z) - H(E) = 0.063840 bits\n  ΔH_ZE/H(Z)       = 0.015620\n\nEndgame distribution under emanated prior:\n  E_Stamma: 0.151186\n  E_WrongColorBishop: 0.128604\n  E_RBvsRN: 0.104741\n  E_KlingHorwitz: 0.059875\n  E_BishopVsKnight: 0.053206\n  E_Reti: 0.050991\n  E_KeySquares: 0.042297\n  E_Opposition: 0.042297\n  E_Vancura: 0.038849\n  E_TroitzkyLine: 0.037938\n  E_Fortress: 0.036932\n  E_ShoulderZugzwang: 0.035917\n  E_Philidor: 0.035779\n  E_LaskerRook: 0.035628\n  E_Saavedra: 0.035361\n  E_TwoKnightsVsPawn: 0.030809\n  E_OCBishops: 0.027901\n  E_Lucena: 0.024287\n  E_CochraneDefense: 0.020600\n  E_RuleSquare: 0.006801",
+  computed: {
+    opening_count: list.len(openings),
+    z_state_count: list.len(edges),
+    endgame_count: list.len(endgames),
+    total_support_games: total_support,
+    H_O_bits: H_O,
+    H_Z_bits: H_Z,
+    H_E_bits: H_E,
+    delta_H_emanation_bits: H_Z - H_O,
+    delta_H_ZE_bits: H_Z - H_E
+  }
+}
