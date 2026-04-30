@@ -1,0 +1,59 @@
+import("std/fs") as fs
+import("std/json") as json
+import("std/list") as list
+import("std/rec") as rec
+import("std/math") as math
+
+let edges = rec.get(json.decode(fs.read_text("data/Z_edges_fitted.json")), "edges") in
+let openings = rec.get(json.decode(fs.read_text("data/openings.json")), "openings") in
+let endgames = rec.get(json.decode(fs.read_text("data/endgames.json")), "endgames") in
+
+let support_for_opening = fn(opening_id) {
+  list.fold(edges, 0, fn(acc, e) {
+    if rec.get(e, "opening_id") == opening_id then acc + rec.get(e, "support_games") else acc
+  })
+} in
+
+let probability_for = fn(opening_id, endgame_id) {
+  list.fold(edges, 0.0, fn(acc, e) {
+    if rec.get(e, "opening_id") == opening_id && rec.get(e, "endgame_id") == endgame_id then
+      acc + rec.get(e, "p_hat")
+    else
+      acc
+  })
+} in
+
+let entropy_for_opening = fn(opening_id) {
+  list.fold(endgames, 0.0, fn(acc, eg) {
+    let p = probability_for(opening_id, rec.get(eg, "id")) in
+    if p > 0.0 then acc + ((0.0 - p) * math.log2(p)) else acc
+  })
+} in
+
+let rows = list.map(openings, fn(o) {
+  let oid = rec.get(o, "id") in
+  let h = entropy_for_opening(oid) in
+  {
+    opening_id: oid,
+    opening_name: rec.get(o, "name"),
+    support_games: support_for_opening(oid),
+    H_E_given_this_opening_bits: h,
+    effective_endgames: math.pow(2.0, h),
+    endgames: list.filter(list.map(endgames, fn(eg) {
+      let eid = rec.get(eg, "id") in
+      {
+        endgame_id: eid,
+        endgame_name: rec.get(eg, "name"),
+        probability: probability_for(oid, eid)
+      }
+    }), fn(row) {
+      rec.get(row, "probability") > 0.0
+    })
+  }
+}) in
+
+{
+  operator_name: "Per-Opening Endgame Information Operator",
+  meaning: "For each opening, compute H(E|O_i), effective endgame count, support, and nonzero endgame probabilities.",
+  rows: rows
+}
