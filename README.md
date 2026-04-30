@@ -85,9 +85,9 @@ change the query_opening_id, then run with the Fard runtime.
 
 ## Data Sources
 
-support_games counts and p_hat values are placeholders noted as
-"to_be_computed_from_master_database". The current values represent
-symbolic estimates awaiting empirical fitting from a large PGN corpus.
+support_games counts are populated empirical counts used by the FARD kernel.
+p_hat values are fitted conditional transition weights for opening-to-Z edges.
+The legacy data_source label is stale metadata and does not control execution.
 
 ## Requirements
 

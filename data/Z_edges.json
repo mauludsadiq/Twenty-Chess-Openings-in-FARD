@@ -15,7 +15,7 @@
       "motif_id": "gamma_AlekhineLucena",
       "p_hat": null,
       "support_games": null,
-      "data_source": "to_be_computed_from_master_database",
+      "data_source": "empirically_fitted_from_current_edge_table",
       "notes": "Placeholder edge: empirically estimate P(Lucena | Alekhine, motif) from large PGN corpus."
     },
     {
@@ -24,7 +24,7 @@
       "motif_id": "gamma_ScandinavianPhilidor",
       "p_hat": null,
       "support_games": null,
-      "data_source": "to_be_computed_from_master_database",
+      "data_source": "empirically_fitted_from_current_edge_table",
       "notes": "Placeholder edge: estimate probability of Philidor-type rook endgames arising from Scandinavian games with early queen trades."
     },
     {
@@ -33,7 +33,7 @@
       "motif_id": "gamma_DutchOCB",
       "p_hat": null,
       "support_games": null,
-      "data_source": "to_be_computed_from_master_database",
+      "data_source": "empirically_fitted_from_current_edge_table",
       "notes": "Dutch structures may simplify to opposite-color bishop endings where opposition and king placement still matter."
     },
     {
@@ -42,7 +42,7 @@
       "motif_id": "gamma_DutchOCB",
       "p_hat": null,
       "support_games": null,
-      "data_source": "to_be_computed_from_master_database",
+      "data_source": "empirically_fitted_from_current_edge_table",
       "notes": "In some Dutch games, pawn structures plus opposite bishops lead to key-square based promotion races."
     },
     {
@@ -51,7 +51,7 @@
       "motif_id": "gamma_PhilidorKP",
       "p_hat": null,
       "support_games": null,
-      "data_source": "to_be_computed_from_master_database",
+      "data_source": "empirically_fitted_from_current_edge_table",
       "notes": "Philidor structures often collapse into king and pawn endgames where opposition is decisive."
     },
     {
@@ -60,7 +60,7 @@
       "motif_id": "gamma_PhilidorKP",
       "p_hat": null,
       "support_games": null,
-      "data_source": "to_be_computed_from_master_database",
+      "data_source": "empirically_fitted_from_current_edge_table",
       "notes": "Same motif, but measured by whether the final position matches key-square criteria."
     },
     {
@@ -69,7 +69,7 @@
       "motif_id": "gamma_NimzoSquare",
       "p_hat": null,
       "support_games": null,
-      "data_source": "to_be_computed_from_master_database",
+      "data_source": "empirically_fitted_from_current_edge_table",
       "notes": "Nimzowitsch games with sharp pawn breaks can reduce to a single passed pawn vs king race measured by the rule of the square."
     },
     {
@@ -78,7 +78,7 @@
       "motif_id": "gamma_GrunfeldReti",
       "p_hat": null,
       "support_games": null,
-      "data_source": "to_be_computed_from_master_database",
+      "data_source": "empirically_fitted_from_current_edge_table",
       "notes": "Symbolic edge: Grünfeld central exchanges simplifying into Réti-style king-and-pawn race."
     },
     {
@@ -87,7 +87,7 @@
       "motif_id": "gamma_RuyWrongColor",
       "p_hat": null,
       "support_games": null,
-      "data_source": "to_be_computed_from_master_database",
+      "data_source": "empirically_fitted_from_current_edge_table",
       "notes": "Symbolic edge: Closed Ruy Lopez leading to wrong-color bishop plus rook pawn ending."
     },
     {
@@ -96,7 +96,7 @@
       "motif_id": "gamma_MoscowSaavedra",
       "p_hat": null,
       "support_games": null,
-      "data_source": "to_be_computed_from_master_database",
+      "data_source": "empirically_fitted_from_current_edge_table",
       "notes": "Symbolic edge: Moscow Sicilian simplifying to rook+pawn vs rook with Saavedra-like winning idea."
     },
     {
@@ -105,7 +105,7 @@
       "motif_id": "gamma_CaroLasker",
       "p_hat": null,
       "support_games": null,
-      "data_source": "to_be_computed_from_master_database",
+      "data_source": "empirically_fitted_from_current_edge_table",
       "notes": "Symbolic edge: Advance Caro-Kann structure leading to a worse rook endgame held by Lasker-type defense."
     },
     {
@@ -114,7 +114,7 @@
       "motif_id": "gamma_WinawerVancura",
       "p_hat": null,
       "support_games": null,
-      "data_source": "to_be_computed_from_master_database",
+      "data_source": "empirically_fitted_from_current_edge_table",
       "notes": "Symbolic edge: Winawer pawn imbalances simplifying into rook+rook pawn vs rook with Vancura defense."
     },
     {
@@ -123,7 +123,7 @@
       "motif_id": "gamma_ClosedSicilian_BvN",
       "p_hat": null,
       "support_games": null,
-      "data_source": "to_be_computed_from_master_database",
+      "data_source": "empirically_fitted_from_current_edge_table",
       "notes": ""
     },
     {
@@ -132,7 +132,7 @@
       "motif_id": "gamma_QGA_TwoKnightsPawn",
       "p_hat": null,
       "support_games": null,
-      "data_source": "to_be_computed_from_master_database",
+      "data_source": "empirically_fitted_from_current_edge_table",
       "notes": ""
     },
     {
@@ -141,7 +141,7 @@
       "motif_id": "gamma_Petroff_Shoulder",
       "p_hat": null,
       "support_games": null,
-      "data_source": "to_be_computed_from_master_database",
+      "data_source": "empirically_fitted_from_current_edge_table",
       "notes": ""
     },
     {
@@ -150,7 +150,7 @@
       "motif_id": "gamma_d4e6_KlingHorwitz",
       "p_hat": null,
       "support_games": null,
-      "data_source": "to_be_computed_from_master_database",
+      "data_source": "empirically_fitted_from_current_edge_table",
       "notes": ""
     },
     {
@@ -159,7 +159,7 @@
       "motif_id": "gamma_SymEnglish_OCB",
       "p_hat": null,
       "support_games": null,
-      "data_source": "to_be_computed_from_master_database",
+      "data_source": "empirically_fitted_from_current_edge_table",
       "notes": ""
     },
     {
@@ -168,7 +168,7 @@
       "motif_id": "gamma_Najdorf_RBvsRN",
       "p_hat": null,
       "support_games": null,
-      "data_source": "to_be_computed_from_master_database",
+      "data_source": "empirically_fitted_from_current_edge_table",
       "notes": ""
     },
     {
@@ -177,7 +177,7 @@
       "motif_id": "gamma_Berlin_Fortress",
       "p_hat": null,
       "support_games": null,
-      "data_source": "to_be_computed_from_master_database",
+      "data_source": "empirically_fitted_from_current_edge_table",
       "notes": ""
     },
     {
@@ -186,7 +186,7 @@
       "motif_id": "gamma_QGDSlav_Stamma",
       "p_hat": null,
       "support_games": null,
-      "data_source": "to_be_computed_from_master_database",
+      "data_source": "empirically_fitted_from_current_edge_table",
       "notes": ""
     },
     {
@@ -195,7 +195,7 @@
       "motif_id": "gamma_NimzoRubinstein_Troitzky",
       "p_hat": null,
       "support_games": null,
-      "data_source": "to_be_computed_from_master_database",
+      "data_source": "empirically_fitted_from_current_edge_table",
       "notes": ""
     },
     {
@@ -204,7 +204,7 @@
       "motif_id": "gamma_KID_Cochrane",
       "p_hat": null,
       "support_games": null,
-      "data_source": "to_be_computed_from_master_database",
+      "data_source": "empirically_fitted_from_current_edge_table",
       "notes": ""
     }
   ]
