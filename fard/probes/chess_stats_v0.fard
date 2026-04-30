@@ -1,0 +1,19 @@
+import("std/fs") as fs
+import("std/json") as json
+import("std/list") as list
+import("std/rec") as rec
+import("std/math") as math
+
+let raw = fs.read_text("data/Z_edges_fitted.json") in
+let parsed = json.decode(raw) in
+let edges = rec.get(parsed, "edges") in
+let e0 = list.get(edges, 0) in
+{
+  edge_count: list.len(edges),
+  first_opening: rec.get(e0, "opening_id"),
+  first_endgame: rec.get(e0, "endgame_id"),
+  first_motif: rec.get(e0, "motif_id"),
+  first_p_hat: rec.get(e0, "p_hat"),
+  first_support_games: rec.get(e0, "support_games"),
+  entropy_probe: (0.0 - 0.5) * math.log2(0.5)
+}

@@ -1,0 +1,36 @@
+import("std/fs") as fs
+import("std/json") as json
+import("std/list") as list
+import("std/rec") as rec
+
+let query_opening_id = "O_Dutch" in
+let edges = rec.get(json.decode(fs.read_text("data/Z_edges_fitted.json")), "edges") in
+let openings = rec.get(json.decode(fs.read_text("data/openings.json")), "openings") in
+
+let opening_match = list.filter(openings, fn(o) {
+  rec.get(o, "id") == query_opening_id
+}) in
+
+let matching_edges = list.filter(edges, fn(e) {
+  rec.get(e, "opening_id") == query_opening_id
+}) in
+
+let row_sum = list.fold(matching_edges, 0.0, fn(acc, e) {
+  acc + rec.get(e, "p_hat")
+}) in
+
+let ranked_endgames = list.map(matching_edges, fn(e) {
+  {
+    endgame_id: rec.get(e, "endgame_id"),
+    motif_id: rec.get(e, "motif_id"),
+    probability: rec.get(e, "p_hat") / row_sum,
+    support_games: rec.get(e, "support_games")
+  }
+}) in
+
+{
+  query_opening_id: query_opening_id,
+  opening: if list.len(opening_match) > 0 then list.get(opening_match, 0) else null,
+  result_count: list.len(ranked_endgames),
+  endgames: ranked_endgames
+}

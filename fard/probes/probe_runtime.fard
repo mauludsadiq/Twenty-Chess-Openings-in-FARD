@@ -1,0 +1,7 @@
+import("std/list") as list
+import("std/math") as math
+
+{
+  len: list.len([1, 2, 3]),
+  log2_8: math.log2(8.0)
+}

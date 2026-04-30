@@ -1,0 +1,15 @@
+import("std/fs") as fs
+import("std/json") as json
+import("std/list") as list
+import("std/rec") as rec
+
+let raw = fs.read_text("data/Z_edges_fitted.json") in
+let parsed = json.decode(raw) in
+let edges = rec.get(parsed, "edges") in
+let total_support = list.fold(edges, 0, fn(acc, e) {
+  acc + rec.get(e, "support_games")
+}) in
+{
+  edge_count: list.len(edges),
+  total_support: total_support
+}

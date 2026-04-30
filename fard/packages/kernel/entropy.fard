@@ -1,0 +1,14 @@
+export {
+  shannon: fn(probs) {
+    let rec = fn(xs, acc) {
+      if list.len(xs) == 0 then acc else
+        let p = list.get(xs, 0) in
+        let rest = list.slice(xs, 1, list.len(xs)) in
+        if p > 0.0 then
+          rec(rest, acc + ((0.0 - p) * math.log2(p)))
+        else
+          rec(rest, acc)
+    } in
+    rec(probs, 0.0)
+  }
+}

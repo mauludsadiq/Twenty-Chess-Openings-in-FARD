@@ -1,0 +1,16 @@
+import("std/fs") as fs
+import("std/json") as json
+import("std/list") as list
+import("std/rec") as rec
+
+let raw = fs.read_text("data/Z_edges_fitted.json") in
+let parsed = json.decode(raw) in
+let edges = rec.get(parsed, "edges") in
+let e0 = list.get(edges, 0) in
+{
+  opening_id: rec.get(e0, "opening_id"),
+  endgame_id: rec.get(e0, "endgame_id"),
+  motif_id: rec.get(e0, "motif_id"),
+  p_hat: rec.get(e0, "p_hat"),
+  support_games: rec.get(e0, "support_games")
+}

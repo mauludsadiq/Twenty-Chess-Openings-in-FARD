@@ -1,0 +1,21 @@
+import("std/fs") as fs
+import("std/json") as json
+import("std/list") as list
+import("std/rec") as rec
+import("std/math") as math
+
+let raw = fs.read_text("data/Z_edges_fitted.json") in
+let parsed = json.decode(raw) in
+let edges = rec.get(parsed, "edges") in
+let total_support = list.fold(edges, 0, fn(acc, e) {
+  acc + rec.get(e, "support_games")
+}) in
+let h_o = list.fold(edges, 0.0, fn(acc, e) {
+  let p = rec.get(e, "support_games") / (total_support * 1.0) in
+  if p > 0.0 then acc + ((0.0 - p) * math.log2(p)) else acc
+}) in
+{
+  edge_count: list.len(edges),
+  total_support_games: total_support,
+  H_O_bits: h_o
+}

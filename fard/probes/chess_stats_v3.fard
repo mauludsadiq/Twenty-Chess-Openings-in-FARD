@@ -1,0 +1,57 @@
+import("std/fs") as fs
+import("std/json") as json
+import("std/list") as list
+import("std/rec") as rec
+import("std/math") as math
+
+let edges_raw = json.decode(fs.read_text("data/Z_edges_fitted.json")) in
+let edges = rec.get(edges_raw, "edges") in
+let openings_raw = json.decode(fs.read_text("data/openings.json")) in
+let openings = rec.get(openings_raw, "openings") in
+let endgames_raw = json.decode(fs.read_text("data/endgames.json")) in
+let endgames = rec.get(endgames_raw, "endgames") in
+
+let total_support = list.fold(edges, 0, fn(acc, e) {
+  acc + rec.get(e, "support_games")
+}) in
+
+let support_for_opening = fn(opening_id) {
+  list.fold(edges, 0, fn(acc, e) {
+    if rec.get(e, "opening_id") == opening_id then acc + rec.get(e, "support_games") else acc
+  })
+} in
+
+let support_for_endgame = fn(endgame_id) {
+  list.fold(edges, 0, fn(acc, e) {
+    if rec.get(e, "endgame_id") == endgame_id then acc + rec.get(e, "support_games") else acc
+  })
+} in
+
+let h_o = list.fold(openings, 0.0, fn(acc, o) {
+  let support = support_for_opening(rec.get(o, "id")) in
+  let p = support / (total_support * 1.0) in
+  if p > 0.0 then acc + ((0.0 - p) * math.log2(p)) else acc
+}) in
+
+let h_z = list.fold(edges, 0.0, fn(acc, e) {
+  let p = rec.get(e, "support_games") / (total_support * 1.0) in
+  if p > 0.0 then acc + ((0.0 - p) * math.log2(p)) else acc
+}) in
+
+let h_e = list.fold(endgames, 0.0, fn(acc, eg) {
+  let support = support_for_endgame(rec.get(eg, "id")) in
+  let p = support / (total_support * 1.0) in
+  if p > 0.0 then acc + ((0.0 - p) * math.log2(p)) else acc
+}) in
+
+{
+  opening_count: list.len(openings),
+  z_state_count: list.len(edges),
+  endgame_count: list.len(endgames),
+  total_support_games: total_support,
+  H_O_bits: h_o,
+  H_Z_bits: h_z,
+  H_E_bits: h_e,
+  delta_H_emanation_bits: h_z - h_o,
+  delta_H_ZE_bits: h_z - h_e
+}

@@ -1,0 +1,33 @@
+import("std/fs") as fs
+import("std/json") as json
+import("std/list") as list
+import("std/rec") as rec
+import("std/math") as math
+
+let raw = fs.read_text("data/Z_edges_fitted.json") in
+let parsed = json.decode(raw) in
+let edges = rec.get(parsed, "edges") in
+let openings_raw = json.decode(fs.read_text("data/openings.json")) in
+let openings = rec.get(openings_raw, "openings") in
+let total_support = list.fold(edges, 0, fn(acc, e) {
+  acc + rec.get(e, "support_games")
+}) in
+let support_for_opening = fn(opening_id) {
+  list.fold(edges, 0, fn(acc, e) {
+    if rec.get(e, "opening_id") == opening_id then
+      acc + rec.get(e, "support_games")
+    else
+      acc
+  })
+} in
+let h_o = list.fold(openings, 0.0, fn(acc, o) {
+  let support = support_for_opening(rec.get(o, "id")) in
+  let p = support / (total_support * 1.0) in
+  if p > 0.0 then acc + ((0.0 - p) * math.log2(p)) else acc
+}) in
+{
+  opening_count: list.len(openings),
+  edge_count: list.len(edges),
+  total_support_games: total_support,
+  H_O_bits: h_o
+}

@@ -1,0 +1,55 @@
+import("std/fs") as fs
+import("std/json") as json
+import("std/list") as list
+import("std/rec") as rec
+import("std/math") as math
+
+let edges_raw = json.decode(fs.read_text("data/Z_edges_fitted.json")) in
+let edges = rec.get(edges_raw, "edges") in
+let openings = rec.get(json.decode(fs.read_text("data/openings.json")), "openings") in
+let endgames = rec.get(json.decode(fs.read_text("data/endgames.json")), "endgames") in
+
+let total_support = list.fold(edges, 0, fn(acc, e) {
+  acc + rec.get(e, "support_games")
+}) in
+
+let support_for_opening = fn(opening_id) {
+  list.fold(edges, 0, fn(acc, e) {
+    if rec.get(e, "opening_id") == opening_id then acc + rec.get(e, "support_games") else acc
+  })
+} in
+
+let support_for_endgame = fn(endgame_id) {
+  list.fold(edges, 0, fn(acc, e) {
+    if rec.get(e, "endgame_id") == endgame_id then acc + rec.get(e, "support_games") else acc
+  })
+} in
+
+let entropy_from_items = fn(items, support_fn) {
+  list.fold(items, 0.0, fn(acc, item) {
+    let support = support_fn(rec.get(item, "id")) in
+    let p = support / (total_support * 1.0) in
+    if p > 0.0 then acc + ((0.0 - p) * math.log2(p)) else acc
+  })
+} in
+
+let H_O = entropy_from_items(openings, support_for_opening) in
+
+let H_Z = list.fold(edges, 0.0, fn(acc, e) {
+  let p = rec.get(e, "support_games") / (total_support * 1.0) in
+  if p > 0.0 then acc + ((0.0 - p) * math.log2(p)) else acc
+}) in
+
+let H_E = entropy_from_items(endgames, support_for_endgame) in
+
+{
+  opening_count: list.len(openings),
+  z_state_count: list.len(edges),
+  endgame_count: list.len(endgames),
+  total_support_games: total_support,
+  H_O_bits: H_O,
+  H_Z_bits: H_Z,
+  H_E_bits: H_E,
+  delta_H_emanation_bits: H_Z - H_O,
+  delta_H_ZE_bits: H_Z - H_E
+}
