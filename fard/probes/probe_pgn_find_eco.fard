@@ -1,0 +1,13 @@
+import("std/fs") as fs
+import("std/list") as list
+import("std/str") as str
+
+let pgn = fs.read_text("data/pgn/sample.pgn") in
+let games = str.split(pgn, "\n\n\n") in
+let g0 = list.get(games, 0) in
+let lines = str.split(g0, "\n") in
+let eco_line = list.find(lines, fn(l) { str.contains(l, "[ECO ") }) in
+{
+  eco_line: eco_line,
+  eco_is_null: eco_line == null
+}

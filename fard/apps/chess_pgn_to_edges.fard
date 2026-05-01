@@ -1,0 +1,47 @@
+import("std/fs") as fs
+import("std/list") as list
+import("std/str") as str
+import("std/rec") as rec
+import("std/json") as json
+
+let pgn = fs.read_text("data/pgn/sample.pgn") in
+let openings = rec.get(json.decode(fs.read_text("data/openings.json")), "openings") in
+let chunks = str.split(pgn, "\n\n") in
+let headers = list.filter(chunks, fn(g) {
+  str.contains(g, "[ECO ")
+}) in
+
+let extract_eco = fn(header) {
+  let lines = str.split(header, "\n") in
+  list.find(lines, fn(l) { str.contains(l, "[ECO ") })
+} in
+
+let match_opening = fn(eco_line) {
+  if eco_line == null then null else
+  let eco_text = rec.get(eco_line, "some") in
+  list.find(openings, fn(o) {
+    let codes = rec.get(o, "eco_codes") in
+    list.any(codes, fn(c) { str.contains(eco_text, c) })
+  })
+} in
+
+let edges = list.fold(headers, [], fn(acc, h) {
+  let eco = extract_eco(h) in
+  let o = match_opening(eco) in
+  if o == null then acc else
+  if rec.get(o, "some") == null then acc else
+  let orec = rec.get(o, "some") in
+  let oid = rec.get(orec, "id") in
+  list.concat([acc, [{
+    opening_id: oid,
+    endgame_id: "E_PGNObserved",
+    support_games: 1
+  }]])
+}) in
+
+{
+  pgn_header_chunks: list.len(headers),
+  derived_edges_count: list.len(edges),
+  note: "Real PGN-derived opening observations from Lichess API sample. Endgame classification is not yet implemented.",
+  edges: edges
+}

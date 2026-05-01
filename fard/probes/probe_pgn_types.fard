@@ -1,0 +1,16 @@
+import("std/fs") as fs
+import("std/list") as list
+import("std/str") as str
+import("std/rec") as rec
+
+let pgn = fs.read_text("data/pgn/sample.pgn") in
+let games = str.split(pgn, "\n\n\n") in
+let g0 = list.get(games, 0) in
+let lines = str.split(g0, "\n") in
+let l0 = list.get(lines, 0) in
+{
+  game_count: list.len(games),
+  line_count: list.len(lines),
+  first_line: l0,
+  contains_event: str.contains(l0, "[Event ")
+}

@@ -1,0 +1,52 @@
+import("std/str") as str
+import("std/list") as list
+
+let count_char = fn(text, needle) {
+  list.fold(str.chars(text), 0, fn(acc, ch) {
+    if ch == needle then acc + 1 else acc
+  })
+} in
+
+let classify_fen = fn(fen) {
+  let board = list.get(str.split(fen, " "), 0) in
+
+  let white_queens = count_char(board, "Q") in
+  let black_queens = count_char(board, "q") in
+  let white_rooks = count_char(board, "R") in
+  let black_rooks = count_char(board, "r") in
+  let white_bishops = count_char(board, "B") in
+  let black_bishops = count_char(board, "b") in
+  let white_knights = count_char(board, "N") in
+  let black_knights = count_char(board, "n") in
+  let white_pawns = count_char(board, "P") in
+  let black_pawns = count_char(board, "p") in
+
+  let queens = white_queens + black_queens in
+  let rooks = white_rooks + black_rooks in
+  let bishops = white_bishops + black_bishops in
+  let knights = white_knights + black_knights in
+  let pawns = white_pawns + black_pawns in
+  let minors = bishops + knights in
+
+  if queens > 0 then "E_QueenEndgame"
+  else if rooks == 2 && minors == 0 && pawns <= 6 then "E_RookEndgame"
+  else if rooks == 2 && minors > 0 then "E_RBvsRN"
+  else if rooks == 1 && pawns <= 2 then "E_CochraneDefense"
+  else if bishops > 0 && knights > 0 && rooks == 0 then "E_BishopVsKnight"
+  else if bishops == 2 && rooks == 0 && queens == 0 then "E_OCBishops"
+  else if knights == 2 && pawns <= 2 then "E_TwoKnightsVsPawn"
+  else if pawns > 0 && rooks == 0 && minors == 0 then "E_KeySquares"
+  else if pawns == 0 && rooks == 0 && minors > 0 then "E_MinorPieceEndgame"
+  else "E_GeneralEndgame"
+} in
+
+{
+  classifier: "FEN material-signature endgame classifier",
+  requires: "final_fen per PGN game",
+  output: "endgame_id",
+  classify_examples: {
+    rook_endgame: classify_fen("8/8/8/8/8/8/4K3/R6k w - - 0 1"),
+    pawn_endgame: classify_fen("8/8/8/8/4P3/8/4K3/7k w - - 0 1"),
+    bishop_vs_knight: classify_fen("8/8/8/8/8/8/4K2N/6bk w - - 0 1")
+  }
+}

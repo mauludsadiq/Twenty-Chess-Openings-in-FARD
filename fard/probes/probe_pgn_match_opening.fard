@@ -1,0 +1,22 @@
+import("std/fs") as fs
+import("std/json") as json
+import("std/list") as list
+import("std/str") as str
+import("std/rec") as rec
+
+let pgn = fs.read_text("data/pgn/sample.pgn") in
+let openings = rec.get(json.decode(fs.read_text("data/openings.json")), "openings") in
+let g0 = list.get(str.split(pgn, "\n\n\n"), 0) in
+let lines = str.split(g0, "\n") in
+let eco_line = list.find(lines, fn(l) { str.contains(l, "[ECO ") }) in
+let eco_text = rec.get(eco_line, "some") in
+let o0 = list.get(openings, 0) in
+let codes = rec.get(o0, "eco_codes") in
+let c0 = list.get(codes, 0) in
+{
+  eco_line: eco_line,
+  eco_text: eco_text,
+  first_opening: rec.get(o0, "id"),
+  first_code: c0,
+  contains_code: str.contains(eco_text, c0)
+}
