@@ -1,0 +1,35 @@
+import("std/str") as str
+import("std/list") as list
+
+let count_capture = fn(game, piece) {
+  list.fold(str.split(game, "x"), 0, fn(acc, seg) {
+    if str.ends_with(seg, piece) then acc + 1 else acc
+  })
+} in
+
+let infer_endgame = fn(game) {
+  let g = str.lower(game) in
+
+  let rook_caps = count_capture(g, "r") in
+  let bishop_caps = count_capture(g, "b") in
+  let knight_caps = count_capture(g, "n") in
+  let queen_caps = count_capture(g, "q") in
+  let pawn_caps = count_capture(g, "p") in
+
+  let rooks_left = 4 - rook_caps in
+  let queens_left = 2 - queen_caps in
+  let minors_left = (4 - bishop_caps - knight_caps) in
+
+  if queens_left > 0 then "E_QueenEndgame"
+  else if rooks_left >= 2 then "E_RookEndgame"
+  else if rooks_left >= 1 && minors_left > 0 then "E_RBvsRN"
+  else if rooks_left == 0 && minors_left > 0 then "E_BishopVsKnight"
+  else if rooks_left == 0 && minors_left == 0 then "E_KeySquares"
+  else "E_GeneralEndgame"
+} in
+
+{
+  infer_endgame: infer_endgame,
+  classifier: "PGN capture-based endgame classifier",
+  note: "Approximate terminal material via capture signatures"
+}

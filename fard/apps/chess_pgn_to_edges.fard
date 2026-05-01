@@ -3,6 +3,7 @@ import("std/list") as list
 import("std/str") as str
 import("std/rec") as rec
 import("std/json") as json
+import("chess_pgn_endgame_classifier") as eg
 
 let pgn = fs.read_text("data/pgn/sample.pgn") in
 let openings = rec.get(json.decode(fs.read_text("data/openings.json")), "openings") in
@@ -25,16 +26,21 @@ let match_opening = fn(eco_line) {
   })
 } in
 
-let edges = list.fold(headers, [], fn(acc, h) {
+let edges = list.fold(list.range(0, list.len(headers)), [], fn(acc, i) {
+  let h = list.get(headers, i) in
+  let moves = if i+1 < list.len(chunks) then list.get(chunks, i+1) else "" in
+  let game = str.concat([h, "
+", moves]) in
   let eco = extract_eco(h) in
   let o = match_opening(eco) in
   if o == null then acc else
   if rec.get(o, "some") == null then acc else
   let orec = rec.get(o, "some") in
   let oid = rec.get(orec, "id") in
+  let eid = eg.infer_endgame(game) in
   list.concat([acc, [{
     opening_id: oid,
-    endgame_id: "E_PGNObserved",
+    endgame_id: eid,
     support_games: 1
   }]])
 }) in
